@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Special — Build a Café Drink at Home</title>
+  <meta name="description" content="Free home café tool. Build a house special, calculate homemade coffee syrup (including banana bread syrup), and check your coffee station. No signup.">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#top" class="logo">House Special</a>
+      <nav class="nav">
+        <a href="#drink">Drink</a>
+        <a href="#syrup">Syrup</a>
+        <a href="#station">Station</a>
+        <a href="#recipes">Recipes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Free · No signup · Stays in your browser</p>
+        <h1>Build the café drink at home</h1>
+        <p class="hero-sub">Name a house special, scale a homemade syrup, and check the counter. Start with banana bread syrup — the one beating pumpkin spice in search.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#drink">Make mine</a>
+          <a class="btn btn-ghost" href="#syrup">Scale the batch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="wrap benefits-grid">
+        <article class="benefit">
+          <h3>House special builder</h3>
+          <p>Pick a base, milk, syrup, foam and topping. Get a name and a glass recipe.</p>
+        </article>
+        <article class="benefit">
+          <h3>Syrup calculator</h3>
+          <p>Scale banana bread, vanilla or brown sugar cinnamon from a test batch to a party bottle.</p>
+        </article>
+        <article class="benefit">
+          <h3>Station checklist</h3>
+          <p>What you actually need on the counter. Saved on this device only.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="drink" class="panel">
+      <div class="wrap">
+        <p class="kicker">01 · Drink</p>
+        <h2>Make a house special</h2>
+        <p class="lead">You do not need a $300 machine. One good base and one homemade syrup is enough.</p>
+
+        <div class="builder-grid">
+          <form id="builder-form" class="card controls" autocomplete="off">
+            <label>
+              Base
+              <select id="base"></select>
+            </label>
+            <label>
+              Milk
+              <select id="milk"></select>
+            </label>
+            <label>
+              Syrup
+              <select id="syrup"></select>
+            </label>
+            <label>
+              Foam
+              <select id="foam"></select>
+            </label>
+            <label>
+              Topping
+              <select id="topping"></select>
+            </label>
+            <div class="btn-row">
+              <button type="button" class="btn btn-primary" id="save-fav">Save as favorite</button>
+              <button type="button" class="btn btn-ghost" id="load-fav">Load favorite</button>
+            </div>
+            <p class="hint" id="fav-status"></p>
+          </form>
+
+          <aside class="card drink-card" id="drink-card">
+            <p class="kicker">Your drink</p>
+            <h3 id="drink-name">Banana Bread Cold Brew</h3>
+            <ul id="drink-lines" class="recipe-lines"></ul>
+            <p class="hint" id="drink-note"></p>
+            <button type="button" class="btn btn-ghost" id="copy-drink">Copy recipe</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="syrup" class="panel alt">
+      <div class="wrap">
+        <p class="kicker">02 · Syrup</p>
+        <h2>Scale the batch</h2>
+        <p class="lead">Defaults are a week of drinks. Costs are estimates you can edit. Refrigerate homemade syrup 5–7 days.</p>
+
+        <div class="builder-grid">
+          <form class="card controls" autocomplete="off">
+            <label>
+              Recipe
+              <select id="calc-recipe"></select>
+            </label>
+            <label>
+              Batch size
+              <select id="calc-batch">
+                <option value="0.5">Test (half)</option>
+                <option value="1" selected>Week (~10 drinks)</option>
+                <option value="2">Party (double)</option>
+              </select>
+            </label>
+            <p class="hint">Yield and shop list update as you change the size.</p>
+          </form>
+
+          <aside class="card">
+            <p class="kicker">Shopping list</p>
+            <h3 id="calc-title">Banana Bread Syrup</h3>
+            <p class="yield" id="calc-yield"></p>
+            <ul id="calc-lines" class="recipe-lines"></ul>
+            <div class="cost-box">
+              <label>
+                Estimated batch cost (USD)
+                <input type="number" id="calc-cost" min="0" step="0.05">
+              </label>
+              <p class="hint" id="calc-per-drink"></p>
+            </div>
+            <ol class="steps" id="calc-steps"></ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="station" class="panel">
+      <div class="wrap">
+        <p class="kicker">03 · Station</p>
+        <h2>What you need on the counter</h2>
+        <p class="lead">Check what you already have. The list stays here until you reset it.</p>
+
+        <div class="card">
+          <div class="station-head">
+            <p id="station-progress" class="yield"></p>
+            <button type="button" class="btn btn-ghost" id="station-reset">Reset list</button>
+          </div>
+          <ul class="checklist" id="station-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="recipes" class="panel alt">
+      <div class="wrap">
+        <p class="kicker">04 · Recipes</p>
+        <h2>Four house recipes</h2>
+        <p class="lead">Banana bread syrup first. The other three cover most copycat lattes.</p>
+        <div class="recipe-grid" id="recipe-grid"></div>
+      </div>
+    </section>
+
+    <section id="how" class="panel">
+      <div class="wrap narrow">
+        <p class="kicker">How it works</p>
+        <h2>A house special is five layers</h2>
+        <ol class="plain-list">
+          <li><strong>Base</strong> — drip, cold brew, two shots, or matcha.</li>
+          <li><strong>Syrup</strong> — about 1 oz per 8–12 oz of drink.</li>
+          <li><strong>Milk</strong> — splash in cold brew, more in a latte.</li>
+          <li><strong>Foam</strong> — optional. Cold foam sits on iced drinks.</li>
+          <li><strong>Topping</strong> — cinnamon is enough most mornings.</li>
+        </ol>
+        <p class="disclaimer">Homemade syrups are perishable. Keep them refrigerated and discard if they smell off. This page is a kitchen companion, not nutrition or medical advice.</p>
+      </div>
+    </section>
+
+    <section id="pack" class="cta-band">
+      <div class="wrap">
+        <h2>Recipe + Label Pack</h2>
+        <p>Printable cards, bottle labels, and a one-page house menu. $7 when it goes live — after this page is public.</p>
+        <a class="btn btn-primary" href="#drink">Use the free tools first</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>House Special · free home café tools · data stays on your device</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
